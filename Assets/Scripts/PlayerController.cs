@@ -76,8 +76,11 @@ public class PlayerController : MonoBehaviour
         TryCrouch();
         Move(); // 그 다음 움직이게 하기. 그래서 Move가 TryRun보다 뒤에 있어야한다.
         MoveCheck();
-        CameraRotation();
-        CharacterRotation();
+        if (!Inventory.inventoryActivated)
+        {
+            CameraRotation();
+            CharacterRotation();
+        }
     }
 
     // 앉기 시도
