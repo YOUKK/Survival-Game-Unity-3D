@@ -27,6 +27,8 @@ public class GunController : MonoBehaviour
 
     // 레이저 충돌 정보 받아옴
     private RaycastHit hitInfo;
+    [SerializeField]
+    private LayerMask layerMask;
 
     // 필요한 컴포넌트
     [SerializeField]
@@ -111,7 +113,7 @@ public class GunController : MonoBehaviour
             + new Vector3(Random.Range(-theCrossHair.GetAccuracy() - currentGun.accuracy, theCrossHair.GetAccuracy() - currentGun.accuracy),
                           Random.Range(-theCrossHair.GetAccuracy() - currentGun.accuracy, theCrossHair.GetAccuracy() - currentGun.accuracy),
                           0)
-            , out hitInfo, currentGun.range)) 
+            , out hitInfo, currentGun.range, layerMask)) 
 		{
             // 타입을 모를 때는 var이라고 써면 된다. 이건 GameObject라는 걸 아니까.
             GameObject clone = Instantiate(hit_effect_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
